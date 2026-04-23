@@ -1,0 +1,2111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VoltEdge Electric | Chicago's Premier Electrician</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --amber: #F5A623;
+    --amber-light: #FFD166;
+    --amber-dark: #C47D0E;
+    --electric: #FFE14D;
+    --dark: #0A0A0F;
+    --dark-2: #111118;
+    --dark-3: #1A1A25;
+    --dark-4: #22222F;
+    --gray: #8888A0;
+    --light: #F0F0F8;
+    --white: #FFFFFF;
+    --danger: #FF4444;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--dark);
+    color: var(--light);
+    overflow-x: hidden;
+  }
+
+  /* ─── UTILITY ─────────────────────────── */
+  .container { max-width: 1180px; margin: 0 auto; padding: 0 28px; }
+  .hidden { display: none !important; }
+  .badge {
+    display: inline-block;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--amber);
+    border: 1px solid var(--amber-dark);
+    border-radius: 2px;
+    padding: 4px 10px;
+    margin-bottom: 16px;
+  }
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--amber);
+    color: var(--dark);
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    border: none;
+    padding: 14px 28px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background .2s, transform .15s;
+    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+  }
+  .btn-primary:hover { background: var(--electric); transform: translateY(-2px); }
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    color: var(--amber);
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    border: 1.5px solid var(--amber);
+    padding: 13px 28px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background .2s, color .2s;
+    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+  }
+  .btn-outline:hover { background: var(--amber); color: var(--dark); }
+
+  /* ─── NAV ──────────────────────────────── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(10,10,15,.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(245,166,35,.15);
+  }
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+  }
+  .logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px;
+    letter-spacing: .08em;
+    color: var(--white);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .logo span { color: var(--amber); }
+  .logo-bolt {
+    width: 24px; height: 24px;
+    background: var(--amber);
+    clip-path: polygon(60% 0%, 40% 45%, 80% 45%, 35% 100%, 55% 55%, 20% 55%);
+  }
+  .nav-links {
+    display: flex; gap: 0; list-style: none;
+  }
+  .nav-links a {
+    display: block;
+    color: var(--gray);
+    text-decoration: none;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    padding: 22px 14px;
+    transition: color .2s;
+    position: relative;
+  }
+  .nav-links a:after {
+    content: '';
+    position: absolute; bottom: 0; left: 14px; right: 14px; height: 2px;
+    background: var(--amber);
+    transform: scaleX(0);
+    transition: transform .2s;
+  }
+  .nav-links a:hover, .nav-links a.active { color: var(--white); }
+  .nav-links a:hover:after, .nav-links a.active:after { transform: scaleX(1); }
+  .nav-cta {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--dark);
+    background: var(--amber);
+    border: none;
+    padding: 9px 18px;
+    cursor: pointer;
+    text-decoration: none;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    transition: background .2s;
+  }
+  .nav-cta:hover { background: var(--electric); }
+  .hamburger {
+    display: none;
+    flex-direction: column; gap: 5px;
+    background: none; border: none; cursor: pointer;
+    padding: 4px;
+  }
+  .hamburger span {
+    display: block; width: 24px; height: 2px;
+    background: var(--amber);
+    transition: all .3s;
+  }
+
+  /* ─── PAGES ─────────────────────────────── */
+  .page { display: none; padding-top: 64px; min-height: 100vh; }
+  .page.active { display: block; }
+
+  /* ─── HOME ──────────────────────────────── */
+  .hero {
+    position: relative;
+    min-height: calc(100vh - 64px);
+    display: flex; align-items: center;
+    overflow: hidden;
+    background: var(--dark);
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: 
+      radial-gradient(ellipse 80% 60% at 70% 50%, rgba(245,166,35,.08) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 40% at 80% 20%, rgba(255,225,77,.06) 0%, transparent 50%);
+  }
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image: 
+      linear-gradient(rgba(245,166,35,.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(245,166,35,.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .hero-content {
+    position: relative; z-index: 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    padding: 80px 0;
+  }
+  .hero-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--amber);
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 20px;
+  }
+  .hero-label:before {
+    content: '';
+    display: block; width: 40px; height: 1px;
+    background: var(--amber);
+  }
+  h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(52px, 7vw, 88px);
+    line-height: .95;
+    color: var(--white);
+    margin-bottom: 24px;
+  }
+  h1 em {
+    color: var(--amber);
+    font-style: normal;
+    display: block;
+  }
+  .hero-desc {
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--gray);
+    margin-bottom: 36px;
+    max-width: 440px;
+  }
+  .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+  .hero-stats {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(245,166,35,.1);
+    margin-top: 56px;
+    border: 1px solid rgba(245,166,35,.1);
+  }
+  .hero-stat {
+    background: var(--dark);
+    padding: 24px 20px;
+    text-align: center;
+  }
+  .hero-stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 42px;
+    color: var(--amber);
+    line-height: 1;
+  }
+  .hero-stat-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-top: 4px;
+  }
+  .hero-image-wrap {
+    position: relative;
+  }
+  .hero-image-wrap:before {
+    content: '';
+    position: absolute; inset: -3px;
+    background: linear-gradient(135deg, var(--amber), transparent 60%);
+    z-index: 0;
+  }
+  .hero-image-wrap img {
+    position: relative; z-index: 1;
+    width: 100%; height: 480px;
+    object-fit: cover;
+    display: block;
+    filter: brightness(.9) contrast(1.05);
+  }
+  .hero-badge {
+    position: absolute; z-index: 2;
+    bottom: -20px; left: -20px;
+    background: var(--amber);
+    color: var(--dark);
+    padding: 16px 20px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 14px;
+    letter-spacing: .08em;
+  }
+  .hero-badge strong { display: block; font-size: 28px; }
+
+  /* Ticker */
+  .ticker {
+    background: var(--amber);
+    overflow: hidden;
+    padding: 12px 0;
+  }
+  .ticker-inner {
+    display: flex; gap: 0;
+    animation: ticker 30s linear infinite;
+    white-space: nowrap;
+  }
+  .ticker-item {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 15px;
+    letter-spacing: .12em;
+    color: var(--dark);
+    padding: 0 32px;
+    display: flex; align-items: center; gap: 16px;
+  }
+  .ticker-item:after { content: '⚡'; }
+  @keyframes ticker {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* Services section */
+  .section { padding: 96px 0; }
+  .section-header { text-align: center; margin-bottom: 64px; }
+  h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(36px, 5vw, 56px);
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+  h2 em { color: var(--amber); font-style: normal; }
+  .section-sub {
+    font-size: 16px;
+    color: var(--gray);
+    max-width: 520px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(245,166,35,.08);
+    border: 1px solid rgba(245,166,35,.08);
+  }
+  .service-card {
+    background: var(--dark-2);
+    padding: 36px 28px;
+    transition: background .25s;
+    position: relative;
+    overflow: hidden;
+  }
+  .service-card:before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: var(--amber);
+    transform: scaleX(0);
+    transition: transform .3s;
+  }
+  .service-card:hover { background: var(--dark-3); }
+  .service-card:hover:before { transform: scaleX(1); }
+  .service-icon {
+    font-size: 32px;
+    margin-bottom: 16px;
+    display: block;
+  }
+  .service-card h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: .04em;
+    color: var(--white);
+    margin-bottom: 10px;
+  }
+  .service-card p { font-size: 14px; color: var(--gray); line-height: 1.7; }
+
+  /* Process */
+  .process-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    position: relative;
+  }
+  .process-grid:before {
+    content: '';
+    position: absolute; top: 36px; left: 12.5%; right: 12.5%; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--amber), var(--amber), transparent);
+    opacity: .3;
+  }
+  .process-step { text-align: center; padding: 0 20px; }
+  .step-num {
+    width: 72px; height: 72px;
+    border: 1.5px solid var(--amber);
+    border-radius: 0;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 20px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 30px;
+    color: var(--amber);
+    background: var(--dark);
+    position: relative; z-index: 1;
+    transition: background .25s;
+  }
+  .process-step:hover .step-num { background: var(--amber); color: var(--dark); }
+  .process-step h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px;
+    letter-spacing: .06em;
+    color: var(--white);
+    margin-bottom: 10px;
+  }
+  .process-step p { font-size: 13px; color: var(--gray); line-height: 1.65; }
+
+  /* Reviews */
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .review-card {
+    background: var(--dark-3);
+    border: 1px solid rgba(245,166,35,.1);
+    padding: 28px;
+    position: relative;
+  }
+  .review-card:before {
+    content: '"';
+    position: absolute; top: 16px; right: 20px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 64px;
+    color: rgba(245,166,35,.12);
+    line-height: 1;
+  }
+  .stars { color: var(--amber); font-size: 14px; margin-bottom: 12px; }
+  .review-text { font-size: 14px; color: var(--gray); line-height: 1.7; margin-bottom: 20px; }
+  .review-author { display: flex; align-items: center; gap: 12px; }
+  .review-avatar {
+    width: 40px; height: 40px;
+    background: var(--amber);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px;
+    color: var(--dark);
+    flex-shrink: 0;
+  }
+  .review-name { font-weight: 600; font-size: 14px; color: var(--white); }
+  .review-loc { font-size: 12px; color: var(--gray); }
+
+  /* Blog preview */
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .blog-card {
+    background: var(--dark-2);
+    border: 1px solid rgba(255,255,255,.06);
+    overflow: hidden;
+    transition: border-color .25s;
+    cursor: pointer;
+  }
+  .blog-card:hover { border-color: rgba(245,166,35,.3); }
+  .blog-card img { width: 100%; height: 180px; object-fit: cover; display: block; transition: transform .4s; }
+  .blog-card:hover img { transform: scale(1.04); }
+  .blog-body { padding: 20px; }
+  .blog-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 8px;
+  }
+  .blog-card h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    letter-spacing: .04em;
+    color: var(--white);
+    line-height: 1.2;
+    margin-bottom: 10px;
+  }
+  .blog-card p { font-size: 13px; color: var(--gray); line-height: 1.6; margin-bottom: 14px; }
+  .blog-meta { font-family: 'Space Mono', monospace; font-size: 10px; color: var(--gray); display: flex; gap: 16px; }
+
+  /* CTA Banner */
+  .cta-banner {
+    background: var(--amber);
+    padding: 72px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-banner:before {
+    content: '⚡';
+    position: absolute; right: 8%; top: 50%; transform: translateY(-50%);
+    font-size: 200px;
+    opacity: .07;
+    line-height: 1;
+  }
+  .cta-banner-inner {
+    display: flex; align-items: center; justify-content: space-between; gap: 40px;
+  }
+  .cta-banner h2 { color: var(--dark); margin-bottom: 8px; }
+  .cta-banner p { color: rgba(10,10,15,.65); font-size: 16px; }
+  .btn-dark {
+    display: inline-flex;
+    align-items: center; gap: 8px;
+    background: var(--dark);
+    color: var(--amber);
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    border: none;
+    padding: 16px 32px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background .2s;
+    white-space: nowrap;
+    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+  }
+  .btn-dark:hover { background: var(--dark-3); }
+
+  /* ─── FOOTER ─────────────────────────── */
+  footer {
+    background: var(--dark-2);
+    border-top: 1px solid rgba(245,166,35,.1);
+    padding: 64px 0 32px;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 48px;
+    margin-bottom: 48px;
+  }
+  .footer-brand p { font-size: 13px; color: var(--gray); line-height: 1.7; margin-top: 12px; max-width: 280px; }
+  .footer-col h4 {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 16px;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 8px; }
+  .footer-col ul a {
+    font-size: 13px;
+    color: var(--gray);
+    text-decoration: none;
+    transition: color .2s;
+    cursor: pointer;
+  }
+  .footer-col ul a:hover { color: var(--white); }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,.06);
+    padding-top: 24px;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 12px;
+  }
+  .footer-bottom p { font-size: 12px; color: var(--gray); }
+
+  /* ─── ABOUT PAGE ─────────────────────── */
+  .page-hero {
+    background: var(--dark-2);
+    border-bottom: 1px solid rgba(245,166,35,.1);
+    padding: 64px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .page-hero:before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 80% at 80% 50%, rgba(245,166,35,.06) 0%, transparent 60%);
+  }
+  .breadcrumb {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-bottom: 16px;
+  }
+  .breadcrumb span { color: var(--amber); }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .about-img-wrap { position: relative; }
+  .about-img-wrap:before {
+    content: '';
+    position: absolute;
+    top: 20px; left: 20px; right: -20px; bottom: -20px;
+    background: rgba(245,166,35,.1);
+    border: 1px solid rgba(245,166,35,.2);
+  }
+  .about-img-wrap img {
+    position: relative; z-index: 1;
+    width: 100%; height: 460px;
+    object-fit: cover;
+    display: block;
+  }
+  .about-text h2 { text-align: left; margin-bottom: 20px; }
+  .about-text p { font-size: 15px; color: var(--gray); line-height: 1.8; margin-bottom: 16px; }
+  .about-list { list-style: none; margin: 24px 0; }
+  .about-list li {
+    font-size: 14px;
+    color: var(--light);
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255,255,255,.05);
+    display: flex; align-items: center; gap: 12px;
+  }
+  .about-list li:before {
+    content: '⚡';
+    font-size: 12px;
+    flex-shrink: 0;
+  }
+
+  .values-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(245,166,35,.08);
+    border: 1px solid rgba(245,166,35,.08);
+  }
+  .value-card {
+    background: var(--dark-2);
+    padding: 36px 28px;
+    transition: background .25s;
+  }
+  .value-card:hover { background: var(--dark-3); }
+  .value-icon { font-size: 28px; margin-bottom: 16px; }
+  .value-card h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    letter-spacing: .04em;
+    color: var(--amber);
+    margin-bottom: 10px;
+  }
+  .value-card p { font-size: 13px; color: var(--gray); line-height: 1.7; }
+
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+  .team-card { text-align: center; }
+  .team-img {
+    width: 120px; height: 120px;
+    border-radius: 0;
+    object-fit: cover;
+    border: 2px solid rgba(245,166,35,.3);
+    margin: 0 auto 16px;
+    display: block;
+    transition: border-color .25s;
+  }
+  .team-card:hover .team-img { border-color: var(--amber); }
+  .team-card h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px;
+    letter-spacing: .04em;
+    color: var(--white);
+    margin-bottom: 4px;
+  }
+  .team-card p { font-size: 12px; color: var(--amber); font-family: 'Space Mono', monospace; letter-spacing: .06em; }
+
+  /* ─── GALLERY PAGE ──────────────────── */
+  .gallery-filters {
+    display: flex; gap: 8px; flex-wrap: wrap;
+    margin-bottom: 40px;
+  }
+  .filter-btn {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--gray);
+    background: transparent;
+    border: 1px solid rgba(255,255,255,.1);
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: all .2s;
+  }
+  .filter-btn.active, .filter-btn:hover {
+    color: var(--dark);
+    background: var(--amber);
+    border-color: var(--amber);
+  }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+  .gallery-item {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    aspect-ratio: 4/3;
+  }
+  .gallery-item:nth-child(4n) {
+    grid-column: span 2;
+    aspect-ratio: 16/7;
+  }
+  .gallery-item img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform .4s;
+  }
+  .gallery-item:hover img { transform: scale(1.06); }
+  .gallery-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(10,10,15,.85) 0%, transparent 50%);
+    opacity: 0; transition: opacity .3s;
+    display: flex; align-items: flex-end; padding: 20px;
+  }
+  .gallery-item:hover .gallery-overlay { opacity: 1; }
+  .gallery-caption {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--amber);
+  }
+
+  /* ─── BLOG PAGE ─────────────────────── */
+  .blog-hero-post {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    background: var(--dark-2);
+    border: 1px solid rgba(245,166,35,.1);
+    margin-bottom: 48px;
+    overflow: hidden;
+  }
+  .blog-hero-img { height: 360px; object-fit: cover; width: 100%; display: block; }
+  .blog-hero-body {
+    padding: 48px 40px;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .blog-hero-body h2 {
+    font-size: 36px;
+    text-align: left;
+    margin-bottom: 16px;
+  }
+  .blog-hero-body p { font-size: 14px; color: var(--gray); line-height: 1.7; margin-bottom: 24px; }
+  .blog-posts-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+  .blog-post-card {
+    background: var(--dark-2);
+    border: 1px solid rgba(255,255,255,.06);
+    overflow: hidden;
+    transition: border-color .25s;
+    cursor: pointer;
+    display: grid;
+    grid-template-columns: 140px 1fr;
+  }
+  .blog-post-card:hover { border-color: rgba(245,166,35,.3); }
+  .blog-post-card img {
+    width: 140px; height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .blog-post-body { padding: 20px; }
+  .blog-post-body h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px;
+    letter-spacing: .04em;
+    color: var(--white);
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+  .blog-post-body p { font-size: 12px; color: var(--gray); line-height: 1.6; }
+
+  /* ─── FAQ PAGE ──────────────────────── */
+  .faq-list { max-width: 760px; margin: 0 auto; }
+  .faq-item {
+    border-bottom: 1px solid rgba(245,166,35,.1);
+    overflow: hidden;
+  }
+  .faq-q {
+    width: 100%; text-align: left;
+    background: none; border: none; cursor: pointer;
+    padding: 24px 0;
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 20px;
+  }
+  .faq-q-text {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    letter-spacing: .04em;
+    color: var(--white);
+  }
+  .faq-icon {
+    width: 28px; height: 28px;
+    border: 1px solid rgba(245,166,35,.4);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--amber);
+    font-size: 18px;
+    flex-shrink: 0;
+    transition: background .2s, color .2s;
+    font-family: monospace;
+  }
+  .faq-item.open .faq-icon { background: var(--amber); color: var(--dark); }
+  .faq-a {
+    font-size: 14px;
+    color: var(--gray);
+    line-height: 1.8;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .35s ease, padding .35s;
+    padding: 0;
+  }
+  .faq-item.open .faq-a { max-height: 300px; padding-bottom: 24px; }
+
+  /* ─── REVIEWS PAGE ──────────────────── */
+  .reviews-header-stats {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 64px;
+    align-items: center;
+    background: var(--dark-2);
+    border: 1px solid rgba(245,166,35,.1);
+    padding: 48px;
+    margin-bottom: 48px;
+  }
+  .big-rating {
+    text-align: center;
+  }
+  .big-rating-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 80px;
+    color: var(--amber);
+    line-height: 1;
+  }
+  .big-rating-stars { font-size: 20px; color: var(--amber); margin: 4px 0; }
+  .big-rating-label { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--gray); }
+  .rating-bars { flex: 1; }
+  .rating-bar-row {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 10px;
+  }
+  .rating-bar-label { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--gray); width: 40px; flex-shrink: 0; }
+  .rating-bar-track { flex: 1; height: 6px; background: var(--dark-4); }
+  .rating-bar-fill { height: 100%; background: var(--amber); }
+  .rating-bar-count { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--gray); width: 20px; }
+  .reviews-all-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  /* ─── CONTACT PAGE ──────────────────── */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+  }
+  .contact-info h2 { text-align: left; margin-bottom: 20px; }
+  .contact-info p { font-size: 15px; color: var(--gray); line-height: 1.8; margin-bottom: 32px; }
+  .contact-detail {
+    display: flex; align-items: flex-start; gap: 16px;
+    margin-bottom: 20px;
+  }
+  .contact-icon {
+    width: 44px; height: 44px;
+    background: rgba(245,166,35,.1);
+    border: 1px solid rgba(245,166,35,.2);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .contact-detail-text strong { display: block; color: var(--white); font-size: 14px; margin-bottom: 2px; }
+  .contact-detail-text span { font-size: 13px; color: var(--gray); }
+  .contact-form-wrap {
+    background: var(--dark-2);
+    border: 1px solid rgba(245,166,35,.1);
+    padding: 40px;
+  }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .form-group { margin-bottom: 20px; }
+  .form-group label {
+    display: block;
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-bottom: 8px;
+  }
+  .form-group input, .form-group textarea, .form-group select {
+    width: 100%;
+    background: var(--dark);
+    border: 1px solid rgba(255,255,255,.1);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    padding: 12px 16px;
+    transition: border-color .2s;
+    outline: none;
+    appearance: none;
+  }
+  .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+    border-color: var(--amber);
+  }
+  .form-group textarea { resize: vertical; min-height: 120px; }
+  .form-success {
+    background: rgba(245,166,35,.1);
+    border: 1px solid var(--amber);
+    color: var(--amber);
+    padding: 16px 20px;
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    letter-spacing: .06em;
+    text-align: center;
+    display: none;
+    margin-top: 16px;
+  }
+
+  /* ─── SHOP PAGE ─────────────────────── */
+  .shop-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .shop-card {
+    background: var(--dark-2);
+    border: 1px solid rgba(255,255,255,.06);
+    transition: border-color .25s;
+  }
+  .shop-card:hover { border-color: rgba(245,166,35,.3); }
+  .shop-card img {
+    width: 100%; height: 200px;
+    object-fit: cover;
+    display: block;
+    filter: brightness(.85);
+  }
+  .shop-body { padding: 20px; }
+  .shop-body h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    letter-spacing: .04em;
+    color: var(--white);
+    margin-bottom: 6px;
+  }
+  .shop-body p { font-size: 12px; color: var(--gray); line-height: 1.6; margin-bottom: 16px; }
+  .shop-footer { display: flex; justify-content: space-between; align-items: center; }
+  .shop-price {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 24px;
+    color: var(--amber);
+  }
+  .btn-shop {
+    background: var(--amber);
+    color: var(--dark);
+    border: none;
+    padding: 8px 16px;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background .2s;
+  }
+  .btn-shop:hover { background: var(--electric); }
+
+  /* ─── PRIVACY PAGE ──────────────────── */
+  .prose { max-width: 760px; margin: 0 auto; }
+  .prose h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 24px;
+    letter-spacing: .04em;
+    color: var(--amber);
+    margin: 36px 0 12px;
+  }
+  .prose p { font-size: 14px; color: var(--gray); line-height: 1.85; margin-bottom: 16px; }
+
+  /* ─── RESPONSIVE ────────────────────── */
+  @media (max-width: 900px) {
+    .nav-links, .nav-cta { display: none; }
+    .hamburger { display: flex; }
+    .hero-content { grid-template-columns: 1fr; }
+    .hero-image-wrap { display: none; }
+    .services-grid { grid-template-columns: 1fr 1fr; }
+    .process-grid { grid-template-columns: 1fr 1fr; }
+    .process-grid:before { display: none; }
+    .reviews-grid { grid-template-columns: 1fr; }
+    .blog-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .about-grid { grid-template-columns: 1fr; }
+    .gallery-grid { grid-template-columns: 1fr 1fr; }
+    .gallery-item:nth-child(4n) { grid-column: span 1; aspect-ratio: 4/3; }
+    .blog-hero-post { grid-template-columns: 1fr; }
+    .blog-posts-grid { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .team-grid { grid-template-columns: 1fr 1fr; }
+    .values-grid { grid-template-columns: 1fr 1fr; }
+    .hero-stats { grid-template-columns: 1fr 1fr; }
+    .cta-banner-inner { flex-direction: column; text-align: center; }
+    .reviews-all-grid { grid-template-columns: 1fr; }
+    .reviews-header-stats { grid-template-columns: 1fr; text-align: center; }
+    .shop-grid { grid-template-columns: 1fr 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    h2 { font-size: 32px; }
+  }
+  @media (max-width: 600px) {
+    .services-grid { grid-template-columns: 1fr; }
+    .gallery-grid { grid-template-columns: 1fr; }
+    .team-grid { grid-template-columns: 1fr; }
+    .values-grid { grid-template-columns: 1fr; }
+    .shop-grid { grid-template-columns: 1fr; }
+    .blog-post-card { grid-template-columns: 1fr; }
+    .blog-post-card img { width: 100%; height: 160px; }
+    .footer-grid { grid-template-columns: 1fr; }
+  }
+
+  /* Mobile nav menu */
+  .mobile-nav {
+    display: none;
+    position: fixed;
+    top: 64px; left: 0; right: 0;
+    background: rgba(10,10,15,.98);
+    backdrop-filter: blur(12px);
+    border-bottom: 2px solid var(--amber);
+    z-index: 99;
+    padding: 24px;
+    flex-direction: column; gap: 4px;
+  }
+  .mobile-nav.open { display: flex; }
+  .mobile-nav a {
+    color: var(--gray);
+    text-decoration: none;
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(255,255,255,.05);
+    transition: color .2s;
+  }
+  .mobile-nav a:hover, .mobile-nav a.active { color: var(--amber); }
+
+  /* Animations */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .page.active .container { animation: fadeUp .4s ease both; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="container">
+    <div class="nav-inner">
+      <a class="logo" href="#" onclick="showPage('home')">
+        <div class="logo-bolt"></div>
+        Volt<span>Edge</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#" onclick="showPage('home')" class="active" id="nav-home">Home</a></li>
+        <li><a href="#" onclick="showPage('about')" id="nav-about">About</a></li>
+        <li><a href="#" onclick="showPage('gallery')" id="nav-gallery">Gallery</a></li>
+        <li><a href="#" onclick="showPage('blog')" id="nav-blog">Blog</a></li>
+        <li><a href="#" onclick="showPage('shop')" id="nav-shop">Shop</a></li>
+        <li><a href="#" onclick="showPage('faq')" id="nav-faq">FAQ</a></li>
+        <li><a href="#" onclick="showPage('reviews')" id="nav-reviews">Reviews</a></li>
+        <li><a href="#" onclick="showPage('contact')" id="nav-contact">Contact</a></li>
+      </ul>
+      <a class="nav-cta" href="#" onclick="showPage('contact')">📞 (312) 555-0192</a>
+      <button class="hamburger" onclick="toggleMenu()" id="hamburger">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="#" onclick="showPage('home')">Home</a>
+  <a href="#" onclick="showPage('about')">About</a>
+  <a href="#" onclick="showPage('gallery')">Gallery</a>
+  <a href="#" onclick="showPage('blog')">Blog</a>
+  <a href="#" onclick="showPage('shop')">Shop</a>
+  <a href="#" onclick="showPage('faq')">FAQ</a>
+  <a href="#" onclick="showPage('reviews')">Reviews</a>
+  <a href="#" onclick="showPage('contact')">Contact</a>
+</div>
+
+<!-- ══════════════════════════════════════
+     HOME PAGE
+══════════════════════════════════════ -->
+<div id="page-home" class="page active">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="container">
+      <div class="hero-content">
+        <div>
+          <div class="hero-label">Chicago's #1 Electrician</div>
+          <h1>Power. <em>Precision. Performance.</em></h1>
+          <p class="hero-desc">Licensed, bonded, and ready around the clock. From emergency repairs to full rewires — VoltEdge brings expert electrical work to every home and business in Chicago.</p>
+          <div class="hero-actions">
+            <a class="btn-primary" href="#" onclick="showPage('contact')">⚡ Get Free Estimate</a>
+            <a class="btn-outline" href="#" onclick="showPage('about')">About Us →</a>
+          </div>
+          <div class="hero-stats">
+            <div class="hero-stat">
+              <div class="hero-stat-num">18+</div>
+              <div class="hero-stat-label">Years in Chicago</div>
+            </div>
+            <div class="hero-stat">
+              <div class="hero-stat-num">3,400+</div>
+              <div class="hero-stat-label">Jobs Completed</div>
+            </div>
+            <div class="hero-stat">
+              <div class="hero-stat-num">24/7</div>
+              <div class="hero-stat-label">Emergency Service</div>
+            </div>
+          </div>
+        </div>
+        <div class="hero-image-wrap">
+          <img src="https://images.unsplash.com/photo-1621905251918-48416bd8575a?w=800&q=80&auto=format&fit=crop" alt="Electrician at work">
+          <div class="hero-badge">
+            <strong>100%</strong>
+            Satisfaction Guaranteed
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ticker -->
+  <div class="ticker">
+    <div class="ticker-inner">
+      <div class="ticker-item">Emergency Electrical</div>
+      <div class="ticker-item">Panel Upgrades</div>
+      <div class="ticker-item">EV Charger Install</div>
+      <div class="ticker-item">Smart Home Wiring</div>
+      <div class="ticker-item">Commercial Projects</div>
+      <div class="ticker-item">Whole-Home Rewire</div>
+      <div class="ticker-item">Lighting Design</div>
+      <div class="ticker-item">Generator Install</div>
+      <div class="ticker-item">Emergency Electrical</div>
+      <div class="ticker-item">Panel Upgrades</div>
+      <div class="ticker-item">EV Charger Install</div>
+      <div class="ticker-item">Smart Home Wiring</div>
+      <div class="ticker-item">Commercial Projects</div>
+      <div class="ticker-item">Whole-Home Rewire</div>
+      <div class="ticker-item">Lighting Design</div>
+      <div class="ticker-item">Generator Install</div>
+    </div>
+  </div>
+
+  <!-- Services -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <div class="badge">What We Do</div>
+        <h2>Complete Electrical Services for <em>Chicago Homes</em></h2>
+        <p class="section-sub">Licensed, bonded, and fully insured. We handle every electrical need — big or small.</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card">
+          <span class="service-icon">🚨</span>
+          <h3>Emergency Electrical</h3>
+          <p>Power outage, sparking outlet, or tripped breaker? We dispatch within 45 minutes, any hour, any day of the year.</p>
+        </div>
+        <div class="service-card">
+          <span class="service-icon">⚡</span>
+          <h3>Panel Upgrades</h3>
+          <p>Outdated 100A panel holding you back? We upgrade to 200A or 400A service with full permits and city inspection.</p>
+        </div>
+        <div class="service-card">
+          <span class="service-icon">🔌</span>
+          <h3>Whole-Home Rewiring</h3>
+          <p>Old knob-and-tube or aluminum wiring is a fire hazard. We rewire safely with minimal disruption to your walls.</p>
+        </div>
+        <div class="service-card">
+          <span class="service-icon">🚗</span>
+          <h3>EV Charger Installation</h3>
+          <p>Level 2 home charging station installed correctly and to code. Fast, clean, and compatible with all major vehicles.</p>
+        </div>
+        <div class="service-card">
+          <span class="service-icon">🏠</span>
+          <h3>Smart Home Wiring</h3>
+          <p>Structured wiring for smart lighting, security cameras, audio, and automation. Future-proof your home today.</p>
+        </div>
+        <div class="service-card">
+          <span class="service-icon">🔋</span>
+          <h3>Generator & Backup Power</h3>
+          <p>Whole-home standby generators or battery backup systems. Never lose power during a Chicago winter storm again.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section class="section" style="background: var(--dark-2); border-top: 1px solid rgba(245,166,35,.08); border-bottom: 1px solid rgba(245,166,35,.08);">
+    <div class="container">
+      <div class="section-header">
+        <div class="badge">How It Works</div>
+        <h2>Simple Process, <em>Perfect Results</em></h2>
+      </div>
+      <div class="process-grid">
+        <div class="process-step">
+          <div class="step-num">01</div>
+          <h3>Call or Text</h3>
+          <p>Reach us at (312) 555-0192 anytime. Real person answers — no automated menus or voicemail.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-num">02</div>
+          <h3>Free Estimate</h3>
+          <p>We arrive on time, assess the job, and give you a clear upfront price with no hidden fees.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-num">03</div>
+          <h3>We Get to Work</h3>
+          <p>Our licensed electricians complete the job cleanly, efficiently, and to the highest standard.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-num">04</div>
+          <h3>Guaranteed</h3>
+          <p>Every job is backed by our written satisfaction guarantee. Not right? We fix it free.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reviews preview -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <div class="badge">Customer Reviews</div>
+        <h2>What Chicago Homeowners <em>Say About Us</em></h2>
+      </div>
+      <div class="reviews-grid">
+        <div class="review-card">
+          <div class="stars">★★★★★</div>
+          <p class="review-text">Our power went out at midnight in January. VoltEdge had a technician at our door in 40 minutes. Diagnosed and fixed in under an hour. Absolutely incredible service.</p>
+          <div class="review-author">
+            <div class="review-avatar">MP</div>
+            <div>
+              <div class="review-name">Maria Petrova</div>
+              <div class="review-loc">📍 Lincoln Park, IL</div>
+            </div>
+          </div>
+        </div>
+        <div class="review-card">
+          <div class="stars">★★★★★</div>
+          <p class="review-text">Got a full panel upgrade and EV charger installed. The team was professional, clean, and finished faster than quoted. Permit was handled with zero issues.</p>
+          <div class="review-author">
+            <div class="review-avatar">DC</div>
+            <div>
+              <div class="review-name">David Chen</div>
+              <div class="review-loc">📍 Wicker Park, IL</div>
+            </div>
+          </div>
+        </div>
+        <div class="review-card">
+          <div class="stars">★★★★★</div>
+          <p class="review-text">Rewired our 1920s bungalow. They were meticulous about protecting our original woodwork. Every outlet was updated, every light works perfectly. Worth every penny.</p>
+          <div class="review-author">
+            <div class="review-avatar">JR</div>
+            <div>
+              <div class="review-name">Jessica Rodriguez</div>
+              <div class="review-loc">📍 Hyde Park, IL</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="text-align:center; margin-top: 40px;">
+        <a class="btn-outline" href="#" onclick="showPage('reviews')">All Reviews →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog preview -->
+  <section class="section" style="background: var(--dark-2); border-top: 1px solid rgba(245,166,35,.08);">
+    <div class="container">
+      <div class="section-header">
+        <div class="badge">Tips & News</div>
+        <h2>Latest from <em>Our Blog</em></h2>
+      </div>
+      <div class="blog-grid">
+        <div class="blog-card" onclick="showPage('blog')">
+          <img src="https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=600&q=80&auto=format&fit=crop" alt="Blog">
+          <div class="blog-body">
+            <div class="blog-tag">Safety Tips</div>
+            <h3>7 Warning Signs Your Home Needs Rewiring Now</h3>
+            <p>Flickering lights and tripped breakers aren't just annoying — they could mean your wiring is a fire risk.</p>
+            <div class="blog-meta"><span>📅 Mar 20, 2025</span><span>⏱ 5 min</span></div>
+          </div>
+        </div>
+        <div class="blog-card" onclick="showPage('blog')">
+          <img src="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=600&q=80&auto=format&fit=crop" alt="Blog">
+          <div class="blog-body">
+            <div class="blog-tag">EV Charging</div>
+            <h3>Level 1 vs Level 2 Home Charger: Which Is Right for You?</h3>
+            <p>Not all home EV chargers are equal. Here's what to consider before upgrading your garage.</p>
+            <div class="blog-meta"><span>📅 Feb 14, 2025</span><span>⏱ 4 min</span></div>
+          </div>
+        </div>
+        <div class="blog-card" onclick="showPage('blog')">
+          <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80&auto=format&fit=crop" alt="Blog">
+          <div class="blog-body">
+            <div class="blog-tag">Smart Home</div>
+            <h3>How to Future-Proof Your Home's Electrical System in 2025</h3>
+            <p>Smart panels, structured wiring, and load management — what Chicago homeowners need to know.</p>
+            <div class="blog-meta"><span>📅 Jan 8, 2025</span><span>⏱ 6 min</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta-banner">
+    <div class="container">
+      <div class="cta-banner-inner">
+        <div>
+          <h2 style="color:var(--dark);">Electrical Problem? <em style="color:var(--dark-3);">We Can Help.</em></h2>
+          <p>Call Chicago's most trusted electrician — fast response, upfront pricing, 100% satisfaction guaranteed.</p>
+        </div>
+        <a class="btn-dark" href="#" onclick="showPage('contact')">📞 Call (312) 555-0192</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="logo" href="#" onclick="showPage('home')" style="margin-bottom:4px;">
+            <div class="logo-bolt"></div>
+            Volt<span>Edge</span>
+          </a>
+          <p>Professional electrical services in Chicago, IL and surrounding areas. Trusted by over 3,400 homeowners and businesses since 2007.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Services</h4>
+          <ul>
+            <li><a onclick="showPage('home')">Emergency Electrical</a></li>
+            <li><a onclick="showPage('home')">Panel Upgrades</a></li>
+            <li><a onclick="showPage('home')">EV Charger Install</a></li>
+            <li><a onclick="showPage('home')">Smart Home Wiring</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a onclick="showPage('about')">About Us</a></li>
+            <li><a onclick="showPage('gallery')">Gallery</a></li>
+            <li><a onclick="showPage('reviews')">Reviews</a></li>
+            <li><a onclick="showPage('blog')">Blog</a></li>
+            <li><a onclick="showPage('faq')">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <ul>
+            <li><a onclick="showPage('privacy')">Privacy Policy</a></li>
+            <li><a onclick="showPage('contact')">Contact</a></li>
+            <li><a onclick="showPage('shop')">Shop</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 VoltEdge Electric. All rights reserved. License #EC-114892 | Chicago, IL</p>
+        <p style="color: var(--amber); font-family: 'Space Mono', monospace; font-size: 11px;">⚡ 24/7 Emergency: (312) 555-0192</p>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<!-- ══════════════════════════════════════
+     ABOUT PAGE
+══════════════════════════════════════ -->
+<div id="page-about" class="page">
+  <div class="page-hero">
+    <div class="container">
+      <div class="breadcrumb">Home / <span>About Us</span></div>
+      <div class="badge">Our Story</div>
+      <h2>About <em>VoltEdge Electric</em></h2>
+      <p class="section-sub" style="margin:0;text-align:left;">Chicago's trusted electrician since 2007 — family owned, locally operated.</p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-img-wrap">
+          <img src="https://images.unsplash.com/photo-1581094271901-8022df4466f9?w=700&q=80&auto=format&fit=crop" alt="VoltEdge team">
+        </div>
+        <div class="about-text">
+          <div class="badge">2007</div>
+          <h2>Built on Expertise, <em>Driven by Integrity</em></h2>
+          <p>VoltEdge Electric was founded in 2007 by Tom Kowalski, a second-generation electrician who grew up watching his father wire homes across the South Side. His belief was simple: Chicago families deserve honest pricing, clean work, and an electrician who shows up on time.</p>
+          <p>What began as a solo operation out of a single van has grown into a team of 14 licensed electricians covering the entire Chicagoland area — from the North Shore to Naperville.</p>
+          <ul class="about-list">
+            <li>Licensed, bonded & fully insured (License #EC-114892)</li>
+            <li>Free estimates with upfront, honest pricing</li>
+            <li>Written satisfaction guarantee on every job</li>
+            <li>Emergency electrical service 24/7, including holidays</li>
+            <li>Only code-compliant materials and methods used</li>
+            <li>Over 3,400 completed jobs across Chicagoland</li>
+          </ul>
+          <a class="btn-primary" href="#" onclick="showPage('contact')">Get a Free Estimate</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--dark-2); border-top: 1px solid rgba(245,166,35,.08); border-bottom: 1px solid rgba(245,166,35,.08);">
+    <div class="container">
+      <div class="section-header">
+        <div class="badge">Why Choose Us</div>
+        <h2>The VoltEdge <em>Difference</em></h2>
+      </div>
+      <div class="values-grid">
+        <div class="value-card">
+          <div class="value-icon">⚡</div>
+          <h3>Speed</h3>
+          <p>45-minute emergency response anywhere in Chicago. We know electrical problems don't wait for business hours.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">💰</div>
+          <h3>Honest Pricing</h3>
+          <p>Full price before we start. No hidden fees, no surprise charges when the job is complete.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">🛡️</div>
+          <h3>Fully Licensed</h3>
+          <p>City of Chicago licensed, bonded, and fully insured. You're protected on every job we do in your property.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">✅</div>
+          <h3>Guaranteed Work</h3>
+          <p>Every job is backed by our written guarantee. If something isn't right, we return and fix it at no cost.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">🏙️</div>
+          <h3>Local Experts</h3>
+          <p>We know Chicago's building codes, permit processes, and older home wiring like no one else.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">🧹</div>
+          <h3>Clean Job Sites</h3>
+          <p>We protect your floors, walls, and belongings. When we leave, your home is cleaner than we found it.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <div class="badge">The Team</div>
+        <h2>Meet Our Master <em>Electricians</em></h2>
+      </div>
+      <div class="team-grid">
+        <div class="team-card">
+          <img class="team-img" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&q=80" alt="Tom Kowalski">
+          <h3>Tom Kowalski</h3>
+          <p>Founder & Master Electrician</p>
+        </div>
+        <div class="team-card">
+          <img class="team-img" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop&q=80" alt="Marcus Webb">
+          <h3>Marcus Webb</h3>
+          <p>Lead Electrician</p>
+        </div>
+        <div class="team-card">
+          <img class="team-img" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=200&h=200&fit=crop&q=80" alt="Diego Santos">
+          <h3>Diego Santos</h3>
+          <p>Panel & Commercial Specialist</p>
+        </div>
+        <div class="team-card">
+          <img class="team-img" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop&q=80" alt="Ryan Foster">
+          <h3>Ryan Foster</h3>
+          <p>Smart Home & EV Expert</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="cta-banner">
+    <div class="container">
+      <div class="cta-banner-inner">
+        <div>
+          <h2 style="color:var(--dark);">Ready to Work with the Best?</h2>
+          <p>Contact us today for a free, no-obligation estimate on any electrical job.</p>
+        </div>
+        <a class="btn-dark" href="#" onclick="showPage('contact')">Get a Free Estimate</a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <div class="footer-bottom" style="padding-top:0;border-top:none;">
+        <p>© 2025 VoltEdge Electric. All rights reserved. License #EC-114892 | Chicago, IL</p>
+        <p style="color: var(--amber); font-family: 'Space Mono', monospace; font-size: 11px;">⚡ 24/7 Emergency: (312) 555-0192</p>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- ══════════════════════════════════════
+     GALLERY PAGE
+══════════════════════════════════════ -->
+<div id="page-gallery" class="page">
+  <div class="page-hero">
+    <div class="container">
+      <div class="breadcrumb">Home / <span>Gallery</span></div>
+      <div class="badge">Our Work</div>
+      <h2>Project <em>Gallery</em></h2>
+      <p class="section-sub" style="margin:0;text-align:left;">Real jobs, real results. Browse completed electrical projects across Chicago.</p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="gallery-filters">
+        <button class="filter-btn active" onclick="filterGallery(this,'all')">All Projects</button>
+        <button class="filter-btn" onclick="filterGallery(this,'panel')">Panel Upgrades</button>
+        <button class="filter-btn" onclick="filterGallery(this,'ev')">EV Chargers</button>
+        <button class="filter-btn" onclick="filterGallery(this,'lighting')">Lighting</button>
+        <button class="filter-btn" onclick="filterGallery(this,'commercial')">Commercial</button>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item" data-cat="panel">
+          <img src="https://images.unsplash.com/photo-1621905251918-48416bd8575a?w=600&q=80&auto=format&fit=crop" alt="Panel upgrade">
+          <div class="gallery-overlay"><div class="gallery-caption">200A Panel Upgrade — Lincoln Park</div></div>
+        </div>
+        <div class="gallery-item" data-cat="ev">
+          <img src="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=600&q=80&auto=format&fit=crop" alt="EV charger">
+          <div class="gallery-overlay"><div class="gallery-caption">Level 2 EV Charger — Evanston</div></div>
+        </div>
+        <div class="gallery-item" data-cat="lighting">
+          <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80&auto=format&fit=crop" alt="Lighting">
+          <div class="gallery-overlay"><div class="gallery-caption">Recessed Lighting Install — River North</div></div>
+        </div>
+        <div class="gallery-item" data-cat="commercial">
+          <img src="https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=800&q=80&auto=format&fit=crop" alt="Commercial">
+          <div class="gallery-overlay"><div class="gallery-caption">Commercial Rewire — West Loop Office</div></div>
+        </div>
+        <div class="gallery-item" data-cat="panel">
+          <img src="https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=600&q=80&auto=format&fit=crop" alt="Panel">
+          <div class="gallery-overlay"><div class="gallery-caption">400A Service Upgrade — Naperville</div></div>
+        </div>
+        <div class="gallery-item" data-cat="lighting">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80&auto=format&fit=crop" alt="Smart lighting">
+          <div class="gallery-overlay"><div class="gallery-caption">Smart Lighting — Gold Coast Condo</div></div>
+        </div>
+        <div class="gallery-item" data-cat="ev">
+          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80&auto=format&fit=crop" alt="EV">
+          <div class="gallery-overlay"><div class="gallery-caption">Dual EV Station — Lakeview Garage</div></div>
+        </div>
+        <div class="gallery-item" data-cat="commercial">
+          <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=800&q=80&auto=format&fit=crop" alt="Commercial">
+          <div class="gallery-overlay"><div class="gallery-caption">Restaurant Electrical — Pilsen</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-bottom" style="padding-top:0;border-top:none;">
+        <p>© 2025 VoltEdge Electric. All rights reserved.</p>
+        <p style="color: var(--amber); font-family: 'Space Mono', monospace; font-size: 11px;">⚡ 24/7 Emergency: (312) 555-0192</p>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- ══════════════════════════════════════
+     BLOG PAGE
+══════════════════════════════════════ -->
+<div id="page-blog" class="page">
+  <div class="page-hero">
+    <div class="container">
+      <div class="breadcrumb">Home / <span>Blog</span></div>
+      <div class="badge">Knowledge Hub</div>
+      <h2>Electrical Tips & <em>News</em></h2>
+      <p class="section-sub" style="margin:0;text-align:left;">Expert advice, safety guides, and updates from the VoltEdge team.</p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <!-- Featured post -->
+      <div class="blog-hero-post">
+        <img class="blog-hero-img" src="https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=800&q=80&auto=format&fit=crop" alt="Blog">
+        <div class="blog-hero-body">
+          <div class="blog-tag">⚡ Featured — Safety Tips</div>
+          <h2>7 Warning Signs Your Home Needs <em>Rewiring Now</em></h2>
+          <p>Flickering lights, warm outlets, or frequent breaker trips aren't just annoyances — they could indicate your home's wiring is a serious fire risk. Here's what Chicago homeowners need to watch for.</p>
+          <div class="blog-meta" style="margin-bottom:24px;"><span>📅 March 20, 2025</span><span>⏱ 5 min read</span></div>
+          <a class="btn-primary" href="#">Read Article →</a>
+        </div>
+      </div>
+
+      <!-- More posts -->
+      <div class="blog-posts-grid">
+        <div class="blog-post-card">
+          <img src="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=300&q=80&auto=format&fit=crop" alt="EV">
+          <div class="blog-post-body">
+            <div class="blog-tag">EV Charging</div>
+            <h3>Level 1 vs Level 2 Home Charger: Which Is Right for You?</h3>
+            <p>Not all home EV chargers are equal. Here's the honest breakdown before you buy.</p>
+            <div class="blog-meta" style="margin-top:12px;"><span>📅 Feb 14, 2025</span><span>⏱ 4 min</span></div>
+          </div>
+        </div>
+        <div class="blog-post-card">
+          <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=300&q=80&auto=format&fit=crop" alt="Smart">
+          <div class="blog-post-body">
+            <div class="blog-tag">Smart Home</div>
+            <h3>How to Future-Proof Your Home's Electrical System in 2025</h3>
+            <p>Smart panels and load management — what Chicago homeowners should know.</p>
+            <div class="blog-meta" style="margin-top:12px;"><span>📅 Jan 8, 2025</span><span>⏱ 6 min</span></div>
+          </div>
+        </div>
+        <div class="blog-post-card">
+          <img src="https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=300&q=80&auto=format&fit=crop" alt="Commercial">
+          <div class="blog-post-body">
+            <div class="blog-tag">Commercial</div>
+            <h3>What Chicago Businesses Need to Know About the 2025 Electric Code Updates</h3>
+            <p>Recent NEC changes affect lighting, panel sizing, and GFCI requirements.</p>
+            <div class="blog-meta" style="margin-top:12px;"><span>📅 Dec 5, 2024</span><span>⏱ 7 min</span></div>
+          </div>
+        </div>
+        <div class="blog-post-card">
+          <img src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=300&q=80&auto=format&fit=crop" alt="Generator">
+          <div class="blog-post-body">
+            <div class="blog-tag">Power Backup</div>
+            <h3>Whole-Home Generator vs Battery Backup: The Full Comparison</h3>
+            <p>We break down cost, runtime, and which solution makes sense for Chicago winters.</p>
+            <div class="blog-meta" style="margin-top:12px;"><span>📅 Nov 18, 2024</span><span>⏱ 5 min</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-bottom" style="padding-top:0;border-top:none;">
+        <p>© 2025 VoltEdge Electric. All rights reserved.</p>
+        <p style="color: var(--amber); font-family: 'Space Mono', monospace; font-size: 11px;">⚡ 24/7 Emergency: (312) 555-0192</p>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- ══════════════════════════════════════
+     FAQ PAGE
+══════════════════════════════════════ -->
+<div id="page-faq" class="page">
+  <div class="page-hero">
+    <div class="container">
+      <div class="breadcrumb">Home / <span>FAQ</span></div>
+      <div class="badge">FAQ</div>
+      <h2>Frequently Asked <em>Questions</em></h2>
+      <p class="section-sub" style="margin:0;text-align:left;">Everything you need to know before hiring an electrician in Chicago.</p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">Do you offer 24/7 emergency electrical service?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">Yes. Our emergency line is staffed 24 hours a day, 7 days a week, including all holidays. For life-threatening electrical emergencies such as sparking panels, burning smells, or flooding near electrical equipment, call 911 first, then us. For all other urgent electrical issues, call (312) 555-0192 and we'll dispatch a licensed electrician within 45 minutes.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">Are you licensed and insured to work in Chicago?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">Absolutely. VoltEdge Electric holds City of Chicago Electrical Contractor License #EC-114892. We are fully bonded and carry $2 million in general liability insurance plus workers' compensation. We handle all required permits and schedule city inspections — you don't have to do a thing.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">How much does a panel upgrade cost in Chicago?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">Panel upgrade costs vary based on the current panel size, desired amperage, and the age of your home. A typical 100A to 200A upgrade in Chicago ranges from $1,800 to $3,500, including permits and inspection. We always provide a detailed written estimate before any work begins — no surprise charges.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">Do you pull permits for electrical work?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">Yes, always. Permit-required work performed without a permit can void your homeowner's insurance, create problems when selling your home, and — most importantly — is genuinely dangerous. We pull all required permits through the City of Chicago and handle scheduling the inspection. We do not cut corners.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">Can you install an EV charger at my home?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">Yes. We install Level 2 (240V) EV charging stations for all major vehicle brands including Tesla, Ford, GM, Rivian, and others. We assess your panel capacity, run the dedicated circuit, install the charger, and handle permits. Most installs are completed in a single day.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">My home has knob-and-tube wiring. What should I do?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">Knob-and-tube wiring (common in Chicago homes built before 1950) is not inherently dangerous if it's in good condition and unmodified, but it's ungrounded and cannot support modern electrical loads. Most insurance companies require it to be replaced, and it does not support GFCI protection. We recommend a full assessment and typically advise full rewiring for homes with active knob-and-tube systems.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">What areas of Chicago and the suburbs do you serve?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">We serve all of Chicago including the North Side, South Side, West Side, and the Loop, as well as surrounding suburbs including Evanston, Oak Park, Naperville, Schaumburg, Arlington Heights, Wilmette, Skokie, Berwyn, and more. If you're in Chicagoland, we cover it.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="cta-banner">
+    <div class="container">
+      <div class="cta-banner-inner">
+        <div>
+          <h2 style="color:var(--dark);">Still Have Questions?</h2>
+          <p>Our team is happy to answer anything before you commit to a single dollar.</p>
+        </div>
+        <a class="btn-dark" href="#" onclick="showPage('contact')">Contact Us →</a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <div class="footer-bottom" style="padding-top:0;border-top:none;">
+        <p>© 2025 VoltEdge Electric. All rights reserved.</p>
+        <p style="color: var(--amber); font-family: 'Space Mono', monospace; font-size: 11px;">⚡ 24/7 Emergency: (312) 555-0192</p>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- ══════════════════════════════════════
+     REVIEWS PAGE
+══════════════════════════════════════ -->
+<div id="page-reviews" class="page">
+  <div class="page-hero">
+    <div class="container">
+      <div class="breadcrumb">Home / <span>Reviews</span></div>
+      <div class="badge">Customer Reviews</div>
+      <h2>What Chicago Says <em>About VoltEdge</em></h2>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="reviews-header-stats">
+        <div class="big-rating">
+          <div class="big-rating-num">4.9</div>
+          <div class="big-rating-stars">★★★★★</div>
+          <div class="big-rating-label">Based on 312 reviews</div>
+        </div>
+        <div class="rating-bars">
+          <div class="rating-bar-row">
+            <div class="rating-bar-label">5 ★</div>
+            <div class="rating-bar-track"><div class="rating-bar-fill" style="width:92%"></div></div>
+            <div class="rating-bar-count">287</div>
+          </div>
+          <div class="rating-bar-row">
+            <div class="rating-bar-label">4 ★</div>
+            <div class="rating-bar-track"><div class="rating-bar-fill" style="width:6%"></div></div>
+            <div class="rating-bar-count">18</div>
+          </div>
+          <div class="rating-bar-row">
+            <div class="rating-bar-label">3 ★</div>
+            <div class="rating-bar-track"><div class="rating-bar-fill" style="width:1.5%"></div></div>
+            <div class="rating-bar-count">5</div>
+          </div>
+          <div class="rating-bar-row">
+            <div class="rating-bar-label">2 ★</div>
+            <div class="rating-bar-track"><div class="rating-bar-fill" style="width:.6%"></div></div>
+            <div class="rating-bar-count">2</div>
+          </div>
+          <div class="rating-bar-row">
+            <div class="rating-bar-label">1 ★</div>
+            <div class="rating-bar-track"><div class="rating-bar-fill" style="width:0%"></div></div>
+            <div class="rating-bar-count">0</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reviews-all-grid">
+        <div class="review-card"><div class="stars">★★★★★</div><p class="review-text">Our power went out at midnight in January. VoltEdge had a technician at our door in 40 minutes. Diagnosed and fixed in under an hour. Absolutely incredible service.</p><div class="review-author"><div class="review-avatar">MP</div><div><div class="review-name">Maria Petrova</div><div class="review-loc">📍 Lincoln Park</div></div></div></div>
+        <div class="review-card"><div class="stars">★★★★★</div><p class="review-text">Got a full panel upgrade and EV charger installed. Professional, clean, finished faster than quoted. Permit handled with zero issues. Will use again.</p><div class="review-author"><div class="review-avatar">DC</div><div><div class="review-name">David Chen</div><div class="review-loc">📍 Wicker Park</div></div></div></div>
+        <div class="review-card"><div class="stars">★★★★★</div><p class="review-text">Rewired our 1920s bungalow. Meticulous about protecting original woodwork. Every outlet updated, every light works perfectly. Worth every penny.</p><div class="review-author"><div class="review-avatar">JR</div><div><div class="review-name">Jessica Rodriguez</div><div class="review-loc">📍 Hyde Park</div></div></div></div>
+        <div class="review-card"><div class="stars">★★★★★</div><p class="review-text">Tom came out personally for our commercial project. The West Loop office rewire was completed over a weekend so we had zero downtime. Exceptional work.</p><div class="review-author"><div class="review-avatar">AB</div><div><div class="review-name">Alan Byrne</div><div class="review-loc">📍 West Loop</div></div></div></div>
+        <div class="review-card"><div class="stars">★★★★★</div><p class="review-text">I had a burning smell from an outlet on a Friday night. VoltEdge answered immediately, diagnosed a failing breaker, and replaced the panel. Possibly saved our home.</p><div class="review-author"><div class="review-avatar">SK</div><div><div class="review-name">Sarah Kim</div><div class="review-loc">📍 Roscoe Village</div></div></div></div>
+        <div class="review-card"><div class="stars">★★★★★</div><p class="review-text">Installed whole-home smart lighting and a backup battery system. The team explained every step, cleaned up completely, and the system works flawlessly.</p><div class="review-author"><div class="review-avatar">TN</div><div><div class="review-name">Thomas Nguyen</div><div class="review-loc">📍 Gold Coast</div></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-bottom" style="padding-top:0;border-top:none;">
+        <p>© 2025 VoltEdge Electric. All rights reserved.</p>
+        <p style="color: var(--amber); font-family: 'Space Mono', monospace; font-size: 11px;">⚡ 24/7 Emergency: (312) 555-0192</p>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- ══════════════════════════════════════
+     CONTACT PAGE
+══════════════════════════════════════ -->
+<div id="page-contact" class="page">
+  <div class="page-hero">
+    <div class="container">
+      <div class="breadcrumb">Home / <span>Contact</span></div>
+      <div class="badge">Get In Touch</div>
+      <h2>Contact <em>VoltEdge Electric</em></h2>
+      <p class="section-sub" style="margin:0;text-align:left;">Free estimates. Fast response. No obligation.</p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-info">
+          <h2 style="text-align:left;">Let's Talk About <em>Your Project</em></h2>
+          <p>Whether it's an emergency at 2am or a planned renovation, our team is ready. We provide clear pricing and fast, reliable service across all of Chicagoland.</p>
+          <div class="contact-detail">
+            <div class="contact-icon">📞</div>
+            <div class="contact-detail-text">
+              <strong>Phone</strong>
+              <span>(312) 555-0192 — Available 24/7</span>
+            </div>
+          </div>
+          <div class="contact-detail">
+            <div class="contact-icon">✉️</div>
+            <div class="contact-detail-text">
+              <strong>Email</strong>
+              <span>info@voltedgeelectric.com</span>
+            </div>
+          </div>
+          <div class="contact-detail">
+            <div class="contact-icon">📍</div>
+            <div class="contact-detail-text">
+              <strong>Service Area</strong>
+              <span>All of Chicago & Chicagoland suburbs</span>
+            </div>
+          </div>
+          <div class="contact-detail">
+            <div class="contact-icon">🕐</div>
+            <div class="contact-detail-text">
+              <strong>Office Hours</strong>
+              <span>Mon–Fri 7am–6pm | Emergency: 24/7</span>
+            </div>
+          </div>
+        </div>
+        <div class="contact-form-wrap">
+          <div class="badge">Free Estimate</div>
+          <h3 style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--white);margin-bottom:24px;letter-spacing:.04em;">Request a Quote</h3>
+          <div class="form-row">
+            <div class="form-group">
+              <label>First Name</label>
+              <input type="text" placeholder="John">
+            </div>
+            <div class="form-group">
+              <label>Last Name</label>
+              <input type="text" placeholder="Smith">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Phone Number</label>
+            <input type="tel" placeholder="(312) 000-0000">
+          </div>
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" placeholder="john@email.com">
+          </div>
+          <div class="form-group">
+            <label>Service Needed</label>
+            <select>
+              <option value="">Select a service...</option>
+              <option>Emergency Electrical</option>
+              <option>Panel Upgrade</option>
+              <option>Whole-Home Rewiring</option>
+              <option>EV Charger Installation</option>
+              <option>Smart Home Wiring</option>
+              <option>Generator Install</option>
+              <option>Commercial Project</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Tell Us About Your Project</label>
+            <textarea placeholder="Describe your electrical issue or project..."></textarea>
+          </div>
+          <button class="btn-primary" style="width:100%;justify-content:center;" onclick="submitForm()">⚡ Send Request</button>
+          <div class="form-success" id="formSuccess">✓ Request sent! We'll call you within 2 hours during business hours.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-bottom" style="padding-top:0;border-top:none;">
+        <p>© 2025 VoltEdge Electric. All rights reserved.</p>
+        <p style="color: var(--amber); font-family: 'Space Mono', monospace; font-size: 11px;">⚡ 24/7 Emergency: (312) 555-0192</p>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- ══════════════════════════════════════
+     SHOP PAGE
+══════════════════════════════════════ -->
+<div id="page-shop" class="page">
+  <div class="page-hero">
+    <div class="container">
+      <div class="breadcrumb">Home / <span>Shop</span></div>
+      <div class="badge">Our Store</div>
+      <h2>Electrical Products & <em>Accessories</em></h2>
+      <p class="section-sub" style="margin:0;text-align:left;">Recommended products, hand-picked by our licensed electricians.</p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="shop-grid">
+        <div class="shop-card">
+          <img src="https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=600&q=80&auto=format&fit=crop" alt="Smart Panel">
+          <div class="shop-body">
+            <h3>Smart Breaker Panel Monitor</h3>
+            <p>Real-time energy monitoring for your whole home. Compatible with all major smart home platforms.</p>
+            <div class="shop-footer">
+              <div class="shop-price">$299</div>
+              <button class="btn-shop">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+        <div class="shop-card">
+          <img src="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=600&q=80&auto=format&fit=crop" alt="EV Charger">
+          <div class="shop-body">
+            <h3>Level 2 EV Charging Cable</h3>
+            <p>32A portable EVSE charger. Works with any 240V outlet. Includes carry case.</p>
+            <div class="shop-footer">
+              <div class="shop-price">$189</div>
+              <button class="btn-shop">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+        <div class="shop-card">
+          <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80&auto=format&fit=crop" alt="Surge Protector">
+          <div class="shop-body">
+            <h3>Whole-Home Surge Protector</h3>
+            <p>120/240V whole-house surge protection. Protects all connected appliances from power surges.</p>
+            <div class="shop-footer">
+              <div class="shop-price">$149</div>
+              <button class="btn-shop">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+        <div class="shop-card">
+          <img src="https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=600&q=80&auto=format&fit=crop" alt="Smart Switch">
+          <div class="shop-body">
+            <h3>Smart Dimmer Switch Pack (4x)</h3>
+            <p>WiFi-enabled smart dimmers compatible with Alexa, Google Home, and Apple HomeKit.</p>
+            <div class="shop-footer">
+              <div class="shop-price">$89</div>
+              <button class="btn-shop">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+        <div class="shop-card">
+          <img src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=600&q=80&auto=format&fit=crop" alt="Outlet">
+          <div class="shop-body">
+            <h3>USB-C Outlet Replacement (6-Pack)</h3>
+            <p>Dual USB-C + USB-A outlets with 20W fast charging. Easy DIY install.</p>
+            <div class="shop-footer">
+              <div class="shop-price">$54</div>
+              <button class="btn-shop">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+        <div class="shop-card">
+          <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&q=80&auto=format&fit=crop" alt="Detector">
+          <div class="shop-body">
+            <h3>Combination Smoke + CO Detector</h3>
+            <p>10-year battery, voice alerts, and smart connectivity. Chicago code compliant.</p>
+            <div class="shop-footer">
+              <div class="shop-price">$39</div>
+              <button class="btn-shop">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-bottom" style="padding-top:0;border-top:none;">
+        <p>© 2025 VoltEdge Electric. All rights reserved.</p>
+        <p style="color: var(--amber); font-family: 'Space Mono', monospace; font-size: 11px;">⚡ 24/7 Emergency: (312) 555-0192</p>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- ══════════════════════════════════════
+     PRIVACY PAGE
+══════════════════════════════════════ -->
+<div id="page-privacy" class="page">
+  <div class="page-hero">
+    <div class="container">
+      <div class="breadcrumb">Home / <span>Privacy Policy</span></div>
+      <h2>Privacy <em>Policy</em></h2>
+    </div>
+  </div>
+  <section class="section">
+    <div class="container">
+      <div class="prose">
+        <p>Last updated: January 1, 2025</p>
+        <h3>Information We Collect</h3>
+        <p>VoltEdge Electric collects information you provide when requesting estimates or contacting us, including your name, phone number, email address, and project details. We also collect standard web analytics data through our website.</p>
+        <h3>How We Use Your Information</h3>
+        <p>We use your information solely to respond to your requests, schedule and perform electrical services, and send occasional service-related communications. We do not sell or share your personal information with third parties for marketing purposes.</p>
+        <h3>Data Security</h3>
+        <p>We implement appropriate technical and organizational measures to protect your personal information against unauthorized access, alteration, or disclosure.</p>
+        <h3>Contact Us</h3>
+        <p>For privacy-related questions, contact us at privacy@voltedgeelectric.com or call (312) 555-0192.</p>
+      </div>
+    </div>
+  </section>
+  <footer>
+    <div class="container">
+      <div class="footer-bottom" style="padding-top:0;border-top:none;">
+        <p>© 2025 VoltEdge Electric. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<script>
+  function showPage(id) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById('page-' + id).classList.add('active');
+    document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+    const navLink = document.getElementById('nav-' + id);
+    if (navLink) navLink.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    closeMobileMenu();
+    return false;
+  }
+
+  function toggleMenu() {
+    const menu = document.getElementById('mobileNav');
+    menu.classList.toggle('open');
+  }
+  function closeMobileMenu() {
+    document.getElementById('mobileNav').classList.remove('open');
+  }
+
+  function toggleFaq(btn) {
+    const item = btn.parentElement;
+    const icon = btn.querySelector('.faq-icon');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => {
+      i.classList.remove('open');
+      i.querySelector('.faq-icon').textContent = '+';
+    });
+    if (!isOpen) {
+      item.classList.add('open');
+      icon.textContent = '−';
+    }
+  }
+
+  function filterGallery(btn, cat) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.gallery-item').forEach(item => {
+      if (cat === 'all' || item.dataset.cat === cat) {
+        item.style.display = '';
+      } else {
+        item.style.display = 'none';
+      }
+    });
+  }
+
+  function submitForm() {
+    const success = document.getElementById('formSuccess');
+    success.style.display = 'block';
+    setTimeout(() => { success.style.display = 'none'; }, 6000);
+  }
+</script>
+</body>
+</html>
